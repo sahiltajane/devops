@@ -1,0 +1,13 @@
+services:
+  app:
+    image: alpine
+    container_name: day26-app
+    env_file:
+      - .env
+    command: |
+      sh -c "
+      echo App: \$APP_NAME
+      echo Env: \$APP_ENV
+      echo Redis: \$REDIS_HOST:\$REDIS_PORT
+      sleep 3600
+      "
