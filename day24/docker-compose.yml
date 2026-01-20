@@ -1,0 +1,16 @@
+services:
+  app:
+    image: nginx:alpine
+    container_name: day24-app
+    networks:
+      - mynet
+
+  db:
+    image: redis:alpine
+    container_name: day24-db
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
