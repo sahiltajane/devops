@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: nginx-config
 data:
-  custom.conf: |
+  DEFAULT.conf: |
     server {
-        listen 80;
+        listen       80;
         location / {
-            return 200 'Hello from custom Nginx configuration!';
+           return 200 'Hello from Nginx in APP_MODE=${APP_MODE}';
         }
     }

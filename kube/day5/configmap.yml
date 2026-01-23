@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: testing
+data:
+  APP_MODE: "development"
+
+  default.config: |
+    server {
+        listen 80;
+
+        location / {
+            return 200 "Day 5 App Running in DEV 🚀\n";
+        }
+    }

@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 0
-      maxSurge: 1
+      maxSurge: 1 
   selector:
     matchLabels:
       app: nginx
@@ -24,26 +24,22 @@ spec:
         - containerPort: 80
         livenessProbe:
           httpGet:
-            path: /
+          Path: /
             port: 80
           initialDelaySeconds: 10
           periodSeconds: 10
         readinessProbe:
           httpGet:
-            path: /
+          Path: /
             port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
         volumeMounts:
-        - name: nginx-config
+        - name: nginx-config 
           mountPath: /etc/nginx/conf.d
         env:
         - name: APP_MODE
           valueFrom:
             configMapKeyRef:
-              name: nginx-config
-              key: APP_MODE
-      volumes:
-      - name: nginx-config
-        configMap:
-          name: nginx-config
+              name: app-config
+              key: mode
